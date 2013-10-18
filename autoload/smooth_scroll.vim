@@ -15,13 +15,13 @@ set cpo&vim
 " ==============================================================================
 
 " Scroll the screen up
-function! smooth_scroll#up(dist, duration, speed)
-  call s:smooth_scroll('u', a:dist, a:duration, a:speed)
+function! smooth_scroll#up(dist, duration, speed, follow)
+  call s:smooth_scroll('u', a:dist, a:duration, a:speed, a:follow)
 endfunction
 
 " Scroll the screen down
-function! smooth_scroll#down(dist, duration, speed)
-  call s:smooth_scroll('d', a:dist, a:duration, a:speed)
+function! smooth_scroll#down(dist, duration, speed, follow)
+  call s:smooth_scroll('d', a:dist, a:duration, a:speed, a:follow)
 endfunction
 
 " ==============================================================================
@@ -36,7 +36,8 @@ endfunction
 " itself by Vim takes longer
 " speed: Scrolling speed, or the number of lines to scroll during each scrolling
 " animation
-function! s:smooth_scroll(dir, dist, duration, speed)
+" follow: Coursor follows scrolling line or not. 1 is follow, 0 is not
+function! s:smooth_scroll(dir, dist, duration, speed, follow)
   let last_line_number = line('$')
   for i in range(a:dist/a:speed)
     let start = reltime()
@@ -47,13 +48,21 @@ function! s:smooth_scroll(dir, dist, duration, speed)
       if at_bottom
         break
       endif
-      exec "normal! ".a:speed."j\<C-e>"
+      if a:follow == 0
+        exec "normal! ".a:speed."j\<C-e>"
+      else
+        exec "normal! ".a:speed."\<C-e>"
+      endif
     else
       let at_top = current_window_line == 1 && current_line == 1
       if at_top
         break
       endif
-      exec "normal! ".a:speed."k\<C-y>"
+      if a:follow == 0
+        exec "normal! ".a:speed."k\<C-y>"
+      else
+        exec "normal! ".a:speed."\<C-y>"
+      endif
     endif
     redraw
     let elapsed = s:get_ms_since(start)
