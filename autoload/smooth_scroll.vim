@@ -15,13 +15,13 @@ set cpo&vim
 " ==============================================================================
 
 " Scroll the screen up
-function! smooth_scroll#up(dist, duration, speed, follow)
-  call s:smooth_scroll('u', a:dist, a:duration, a:speed, a:follow)
+function! smooth_scroll#up(dist, duration, speed, follow) range
+  call s:smooth_scroll('u', a:dist, a:duration, a:speed, a:follow, v:count1)
 endfunction
 
 " Scroll the screen down
-function! smooth_scroll#down(dist, duration, speed, follow)
-  call s:smooth_scroll('d', a:dist, a:duration, a:speed, a:follow)
+function! smooth_scroll#down(dist, duration, speed, follow) range
+  call s:smooth_scroll('d', a:dist, a:duration, a:speed, a:follow, v:count1)
 endfunction
 
 " ==============================================================================
@@ -37,9 +37,10 @@ endfunction
 " speed: Scrolling speed, or the number of lines to scroll during each scrolling
 " animation
 " follow: Coursor follows scrolling line or not. 1 is follow, 0 is not
-function! s:smooth_scroll(dir, dist, duration, speed, follow)
+function! s:smooth_scroll(dir, dist, duration, speed, follow, repeat)
   let last_line_number = line('$')
-  for i in range(a:dist/a:speed)
+  let dist = a:dist + (a:dist * a:repeat)
+  for i in range(dist/a:speed)
     let start = reltime()
     let current_line = line('.')
     let current_window_line = winline()
