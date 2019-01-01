@@ -1,6 +1,9 @@
 # vim-smooth-scroll
 
 ## About
+This is a fork of [vim-smooth-scroll], which appears to be abandoned.
+It includes a number of fixes that are not in the original repo.
+
 [vim-smooth-scroll] makes scrolling in Vim nice and smooth. Find yourself completely lost every time you use ```Ctrl-f``` or  ```Ctrl-b```? You might want to give this plugin a try.
 
 ## Installation
