@@ -50,7 +50,7 @@ function! s:smooth_scroll(dir, dist, duration, speed, follow, repeat)
         break
       endif
       if a:follow == 0
-        exec "normal! ".a:speed."j\<C-e>"
+        exec "normal! ".a:speed."\<C-e>".a:speed."j"
       else
         exec "normal! ".a:speed."\<C-e>"
       endif
@@ -60,7 +60,7 @@ function! s:smooth_scroll(dir, dist, duration, speed, follow, repeat)
         break
       endif
       if a:follow == 0
-        exec "normal! ".a:speed."k\<C-y>"
+        exec "normal! ".a:speed."\<C-y>".a:speed."k"
       else
         exec "normal! ".a:speed."\<C-y>"
       endif
