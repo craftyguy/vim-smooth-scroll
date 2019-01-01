@@ -13,10 +13,10 @@ Install using [Pathogen], [Vundle], [Neobundle], or your favorite Vim package ma
 Map your favorite keys like below:
 
 ```vim
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2, 0)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2, 0)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4, 0)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4, 0)<CR>
 ```
 
 ## Function
@@ -24,6 +24,7 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 - __Distance__: This is the total number of lines you want to scroll
 - __Duration__: This is how long you want each frame of the scrolling animation to last in __milliseconds__. Each frame will take _at least_ this amount of time. It could take more if Vim's scrolling itself is slow
 - __Speed__: This is how many lines to scroll during each frame of the scrolling animation
+- __Follow__: Whether or not to follow the scrolling line
 
 [vim-smooth-scroll]:http://github.com/terryma/vim-smooth-scroll
 [Pathogen]:http://github.com/tpope/vim-pathogen
